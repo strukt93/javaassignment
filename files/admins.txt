@@ -1,0 +1,2 @@
+admin,admin,admin,admin@test.com
+admin2,123456,mustafa,mustafa@bla.com
