@@ -1,6 +1,13 @@
 package users;
 
-import other.Item;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import items.Item;
 
 public class Buyer extends User {
 
@@ -15,6 +22,36 @@ public class Buyer extends User {
 	}
 
 	public void buyItem(Item item) {
+		BufferedWriter writer = getBoughtItemsFileWriter();
+		try {
+			writer.write(item.getName() + "," + this.getUsername());
+			writer.close();
+			item.setSold();
+		} catch (IOException e) {
+
+		}
+	}
+
+	public ArrayList<Item> viewBuyingRecords() {
+		return null;
+	}
+
+	public BufferedWriter getBoughtItemsFileWriter() {
+		File boughtItems = new File("files/bought_items.txt");
+		try {
+			FileWriter fileWriter = new FileWriter(boughtItems);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			return bufferedWriter;
+		} catch (IOException e) {
+			return null;
+		}
+	}
+
+	public BufferedReader getBoughtItemsFileReader() {
+		return null;
+	}
+
+	public static void main(String[] args) {
 
 	}
 

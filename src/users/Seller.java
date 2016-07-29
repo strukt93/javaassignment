@@ -1,6 +1,6 @@
 package users;
 
-import other.Item;
+import items.Item;
 
 public class Seller extends User {
 

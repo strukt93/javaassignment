@@ -41,6 +41,6 @@ public class Authentication {
 
 	public static void main(String[] args) {
 		Administrator a = Authentication.adminLogin("admin", "admin");
-		System.out.println(a);
+		System.out.println(a.getCommaSeparatedData());
 	}
 }
