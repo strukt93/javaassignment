@@ -6,8 +6,4 @@ public class Administrator extends User {
 		super(username, password, name, emailAddress, "", "");
 	}
 
-	public String getCommaSeparatedData() {
-		return getUsername() + "," + getPassword() + "," + getName() + "," + getEmailAddress();
-	}
-
 }

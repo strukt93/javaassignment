@@ -10,7 +10,7 @@ public class Authentication {
 	static Initializer initializer = new Initializer();
 
 	public static Administrator adminLogin(String username, String password) {
-		ArrayList<Administrator> admins = initializer.getAdmins();
+		ArrayList<Administrator> admins = Initializer.getAdmins();
 		for (Administrator admin : admins) {
 			if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
 				return admin;
@@ -20,7 +20,7 @@ public class Authentication {
 	}
 
 	public static Buyer buyerLogin(String username, String password) {
-		ArrayList<Buyer> buyers = initializer.getBuyers();
+		ArrayList<Buyer> buyers = Initializer.getBuyers();
 		for (Buyer buyer : buyers) {
 			if (buyer.getUsername().equals(username) && buyer.getPassword().equals(password)) {
 				return buyer;
@@ -30,7 +30,7 @@ public class Authentication {
 	}
 
 	public static Seller sellerLogin(String username, String password) {
-		ArrayList<Seller> sellers = initializer.getSellers();
+		ArrayList<Seller> sellers = Initializer.getSellers();
 		for (Seller seller : sellers) {
 			if (seller.getUsername().equals(username) && seller.getPassword().equals(password)) {
 				return seller;

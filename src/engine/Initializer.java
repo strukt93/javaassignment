@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,130 +13,153 @@ import users.Buyer;
 import users.Seller;
 
 public class Initializer {
-	private ArrayList<Buyer> buyers;
-	private ArrayList<Seller> sellers;
-	private ArrayList<Administrator> admins;
-	private ArrayList<Item> items;
-	private ArrayList<BoughtItem> boughtItems;
-	private BufferedReader adminsFile;
-	private BufferedReader buyersFile;
-	private BufferedReader sellersFile;
-	private BufferedReader itemsFile;
-	private BufferedReader boughtItemsFile;
 
-	public Initializer() {
-		buyers = new ArrayList<Buyer>();
-		sellers = new ArrayList<Seller>();
-		admins = new ArrayList<Administrator>();
-		items = new ArrayList<Item>();
+	public static ArrayList<Buyer> getBuyers() {
 		try {
-			adminsFile = new BufferedReader(new FileReader("files/admins.txt"));
-			buyersFile = new BufferedReader(new FileReader("files/buyers.txt"));
-			sellersFile = new BufferedReader(new FileReader("files/sellers.txt"));
-			itemsFile = new BufferedReader(new FileReader("files/items.txt"));
-			boughtItemsFile = new BufferedReader(new FileReader("files/bought_items.txt"));
-			initialize(adminsFile, buyersFile, sellersFile, itemsFile, boughtItemsFile);
-		} catch (Exception e) {
-			e.printStackTrace();
+			BufferedReader buyersFile = new BufferedReader(new FileReader("files/admins.txt"));
+			ArrayList<Buyer> buyers = initializeBuyers(buyersFile);
+			return buyers;
+		} catch (FileNotFoundException e) {
+
 		}
+		return null;
 	}
 
-	public ArrayList<Buyer> getBuyers() {
-		return buyers;
+	public static ArrayList<Seller> getSellers() {
+		try {
+			BufferedReader sellersFile = new BufferedReader(new FileReader("files/sellers.txt"));
+			ArrayList<Seller> sellers = initializeSellers(sellersFile);
+			return sellers;
+		} catch (FileNotFoundException e) {
+
+		}
+		return null;
 	}
 
-	public ArrayList<Seller> getSellers() {
-		return sellers;
+	public static ArrayList<Administrator> getAdmins() {
+		try {
+			BufferedReader adminsFile = new BufferedReader(new FileReader("files/admins.txt"));
+			ArrayList<Administrator> admins = initializeAdmins(adminsFile);
+			return admins;
+		} catch (FileNotFoundException e) {
+
+		}
+		return null;
 	}
 
-	public int getSellersCount() {
-		return sellers.size();
+	public static ArrayList<Item> getItems() {
+		try {
+			BufferedReader itemsFile = new BufferedReader(new FileReader("files/items.txt"));
+			ArrayList<Item> items = initializeItems(itemsFile);
+			return items;
+		} catch (FileNotFoundException e) {
+
+		}
+		return null;
 	}
 
-	public ArrayList<Administrator> getAdmins() {
-		return admins;
+	public static ArrayList<BoughtItem> getBoughtItems() {
+		try {
+			BufferedReader boughtItemsFile = new BufferedReader(new FileReader("files/items.txt"));
+			ArrayList<BoughtItem> boughtItems = initializeBoughtItems(boughtItemsFile);
+			return boughtItems;
+		} catch (FileNotFoundException e) {
+
+		}
+		return null;
 	}
 
-	private void initialize(BufferedReader adminsFile, BufferedReader buyersFile, BufferedReader sellersFile,
-			BufferedReader itemsFile, BufferedReader boughtItemsFile) {
-		initializeAdmins(adminsFile);
-		initializeBuyers(buyersFile);
-		initializeSellers(sellersFile);
-		initializeItems(itemsFile);
-		initializeBoughtItems(boughtItemsFile);
-	}
-
-	private void initializeAdmins(BufferedReader adminsFile) {
+	private static ArrayList<Administrator> initializeAdmins(BufferedReader adminsFile) {
+		ArrayList<Administrator> admins = new ArrayList<Administrator>();
 		try {
 			String line;
 			while ((line = adminsFile.readLine()) != null) {
 				String[] values = line.split(",");
 				Administrator admin = new Administrator(values[0], values[1], values[2], values[3]);
-				this.admins.add(admin);
+				admins.add(admin);
 			}
 			adminsFile.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return admins;
 	}
 
-	private void initializeBuyers(BufferedReader buyersFile) {
+	private static ArrayList<Buyer> initializeBuyers(BufferedReader buyersFile) {
+		ArrayList<Buyer> buyers = new ArrayList<Buyer>();
 		try {
 			String line;
 			while ((line = buyersFile.readLine()) != null) {
 				String[] values = line.split(",");
 				Buyer buyer = new Buyer(values[1], values[2], values[3], values[4], values[5], values[6]);
-				this.buyers.add(buyer);
+				buyers.add(buyer);
 			}
 			buyersFile.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return buyers;
 	}
 
-	private void initializeSellers(BufferedReader sellersFile) {
+	private static ArrayList<Seller> initializeSellers(BufferedReader sellersFile) {
+		ArrayList<Seller> sellers = new ArrayList<Seller>();
 		try {
 			String line;
 			while ((line = sellersFile.readLine()) != null) {
 				String[] values = line.split(",");
 				Seller seller = new Seller(values[1], values[2], values[3], values[4], values[5], values[6]);
-				this.sellers.add(seller);
+				sellers.add(seller);
 			}
 			sellersFile.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return sellers;
 	}
 
-	private void initializeItems(BufferedReader itemsFile) {
+	private static ArrayList<Item> initializeItems(BufferedReader itemsFile) {
+		ArrayList<Item> items = new ArrayList<Item>();
 		try {
 			String line;
 			while ((line = itemsFile.readLine()) != null) {
 				String[] values = line.split(",");
 				Item item = new Item(values[0], values[1], values[2], Integer.parseInt(values[3]));
-				this.items.add(item);
+				items.add(item);
 			}
 			itemsFile.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return items;
 	}
 
-	private void initializeBoughtItems(BufferedReader boughtItemsFile) {
+	private static ArrayList<BoughtItem> initializeBoughtItems(BufferedReader boughtItemsFile) {
+		ArrayList<BoughtItem> boughtItems = new ArrayList<BoughtItem>();
 		try {
 			String line;
 			while ((line = boughtItemsFile.readLine()) != null) {
 				String[] values = line.split(",");
 				BoughtItem boughtItem = new BoughtItem(values[0], values[1]);
-				this.boughtItems.add(boughtItem);
+				boughtItems.add(boughtItem);
 			}
 			boughtItemsFile.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return boughtItems;
+	}
+
+	public static Item getItemByName(String itemName) {
+		ArrayList<Item> allItems = getItems();
+		for (Item item : allItems) {
+			if (item.getName().equals(itemName)) {
+				return item;
+			}
+		}
+		return null;
 	}
 
 	public static void main(String[] args) {
-
+		System.out.println(Initializer.getAdmins().size());
 	}
 }

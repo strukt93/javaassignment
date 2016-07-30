@@ -1,5 +1,11 @@
 package users;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public abstract class User {
 
 	private String username;
@@ -23,16 +29,8 @@ public abstract class User {
 		return contactNumber;
 	}
 
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-
 	public String getAddress() {
 		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public String getUsername() {
@@ -43,10 +41,6 @@ public abstract class User {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getEmailAddress() {
 		return emailAddress;
 	}
@@ -55,15 +49,55 @@ public abstract class User {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void editEmailAddress(String newEmailAddress, int type) {
+		ArrayList<String> allUsers = getUsersFromFile(type);
+		for (int i = 0; i < allUsers.size(); i++) {
+			String user = allUsers.get(i);
+			if (user.split(",")[0].equals(this.getUsername())) {
+				allUsers.remove(i);
+			}
+		}
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public ArrayList<String> getUsersFromFile(int type) {
+		BufferedReader reader = getBufferedReader(type);
+		String line;
+		ArrayList<String> users = new ArrayList<String>();
+		try {
+			while ((line = reader.readLine()) != null)
+				users.add(line);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return users;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public BufferedReader getBufferedReader(int type) {
+		BufferedReader reader;
+		try {
+			switch (type) {
+			case 1:
+				reader = new BufferedReader(new FileReader("files/admins.txt"));
+				break;
+			case 2:
+				reader = new BufferedReader(new FileReader("files/buyers.txt"));
+				break;
+			case 3:
+				reader = new BufferedReader(new FileReader("files/sellers.txt"));
+				break;
+			default:
+				reader = null;
+				break;
+			}
+		} catch (FileNotFoundException e) {
+			reader = null;
+		}
+		return reader;
 	}
+
+	public String getCommaSeparatedData() {
+		return getUsername() + "," + getPassword() + "," + getName() + "," + getEmailAddress() + ","
+				+ getContactNumber() + "," + getAddress();
+	}
+
 }

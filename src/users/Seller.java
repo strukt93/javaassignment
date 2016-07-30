@@ -9,13 +9,8 @@ public class Seller extends User {
 		super(username, password, name, emailAddress, contactNumber, address);
 	}
 
-	public String getCommaSeparatedData() {
-		return getUsername() + "," + getPassword() + "," + getName() + "," + getEmailAddress() + ","
-				+ getContactNumber() + "," + getAddress();
-	}
-
 	public void addItem(Item item) {
-		
+
 	}
 
 }
