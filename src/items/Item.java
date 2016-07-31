@@ -5,14 +5,16 @@ import java.util.Calendar;
 
 public class Item {
 	private String name;
+	private String sellerUsername;
 	private String description;
 	private String type;
 	private int cost;
 	private String createdAt;
 	private boolean sold;
 
-	public Item(String name, String description, String type, int cost) {
+	public Item(String name, String sellerUsername, String description, String type, int cost) {
 		this.name = name;
+		this.sellerUsername = sellerUsername;
 		this.description = description;
 		this.type = type;
 		this.cost = cost;
@@ -24,32 +26,16 @@ public class Item {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getDescription() {
 		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getType() {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public int getCost() {
 		return cost;
-	}
-
-	public void setCost(int cost) {
-		this.cost = cost;
 	}
 
 	public boolean isSold() {
@@ -62,6 +48,10 @@ public class Item {
 
 	public String getCreatedAt() {
 		return createdAt;
+	}
+
+	public String getSellerUsername() {
+		return sellerUsername;
 	}
 
 }

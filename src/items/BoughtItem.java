@@ -3,10 +3,12 @@ package items;
 public class BoughtItem {
 	private String itemName;
 	private String buyerUsername;
+	private String sellerUsername;
 
-	public BoughtItem(String itemName, String buyerUserName) {
+	public BoughtItem(String itemName, String buyerUserName, String sellerUsername) {
 		this.itemName = itemName;
 		this.buyerUsername = buyerUserName;
+		this.sellerUsername = sellerUsername;
 	}
 
 	public String getItemName() {
@@ -15,5 +17,9 @@ public class BoughtItem {
 
 	public String getBuyerUsername() {
 		return buyerUsername;
+	}
+
+	public String getSellerUsername() {
+		return sellerUsername;
 	}
 }

@@ -1,8 +1,11 @@
 package users;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -49,7 +52,62 @@ public abstract class User {
 		return name;
 	}
 
+	private void setPassword(String password) {
+		this.password = password;
+	}
+
+	private void setName(String name) {
+		this.name = name;
+	}
+
+	private void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	private void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	private void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void editAddress(String newAddress, int type) {
+		ArrayList<String> users = getUsers(type);
+		this.setAddress(newAddress);
+		users.add(this.getCommaSeparatedData());
+		updateUsersFile(users, type);
+	}
+
 	public void editEmailAddress(String newEmailAddress, int type) {
+		ArrayList<String> users = getUsers(type);
+		this.setEmailAddress(newEmailAddress);
+		users.add(this.getCommaSeparatedData());
+		updateUsersFile(users, type);
+	}
+
+	public void editPassword(String newPassword, int type) {
+		ArrayList<String> users = getUsers(type);
+		this.setPassword(newPassword);
+		users.add(this.getCommaSeparatedData());
+		updateUsersFile(users, type);
+	}
+
+	public void editName(String newName, int type) {
+		ArrayList<String> users = getUsers(type);
+		this.setName(newName);
+		users.add(this.getCommaSeparatedData());
+		updateUsersFile(users, type);
+	}
+
+	public void editContactNumber(String newContactNumber, int type) {
+		ArrayList<String> users = getUsers(type);
+		this.setContactNumber(newContactNumber);
+		users.add(this.getCommaSeparatedData());
+		updateUsersFile(users, type);
+	}
+
+	private ArrayList<String> getUsers(int type) {
 		ArrayList<String> allUsers = getUsersFromFile(type);
 		for (int i = 0; i < allUsers.size(); i++) {
 			String user = allUsers.get(i);
@@ -57,9 +115,10 @@ public abstract class User {
 				allUsers.remove(i);
 			}
 		}
+		return allUsers;
 	}
 
-	public ArrayList<String> getUsersFromFile(int type) {
+	private ArrayList<String> getUsersFromFile(int type) {
 		BufferedReader reader = getBufferedReader(type);
 		String line;
 		ArrayList<String> users = new ArrayList<String>();
@@ -72,7 +131,7 @@ public abstract class User {
 		return users;
 	}
 
-	public BufferedReader getBufferedReader(int type) {
+	private BufferedReader getBufferedReader(int type) {
 		BufferedReader reader;
 		try {
 			switch (type) {
@@ -93,6 +152,42 @@ public abstract class User {
 			reader = null;
 		}
 		return reader;
+	}
+
+	private BufferedWriter getBufferedWriter(int type) {
+		BufferedWriter writer;
+		try {
+			switch (type) {
+			case 1:
+				writer = new BufferedWriter(new FileWriter(new File("files/admins.txt")));
+				break;
+			case 2:
+				writer = new BufferedWriter(new FileWriter(new File("files/buyers.txt")));
+				break;
+			case 3:
+				writer = new BufferedWriter(new FileWriter(new File("files/sellers.txt")));
+				break;
+			default:
+				writer = null;
+				break;
+			}
+		} catch (IOException e) {
+			writer = null;
+		}
+		return writer;
+	}
+
+	private void updateUsersFile(ArrayList<String> users, int type) {
+		BufferedWriter writer = getBufferedWriter(type);
+		try {
+			for (String user : users) {
+				System.out.println(user);
+				writer.write(user + System.lineSeparator());
+			}
+			writer.flush();
+		} catch (IOException e) {
+
+		}
 	}
 
 	public String getCommaSeparatedData() {

@@ -1,2 +1,2 @@
-admin,admin,admin,admin@test.com
-admin2,123456,mustafa,mustafa@bla.com
+admin,admin123,mustafa,x@bla.com,123123123,asasdasd
+admin1,admin123,mustafa,x@bla.com,123123123,asasdasd

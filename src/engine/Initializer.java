@@ -75,8 +75,10 @@ public class Initializer {
 			String line;
 			while ((line = adminsFile.readLine()) != null) {
 				String[] values = line.split(",");
-				Administrator admin = new Administrator(values[0], values[1], values[2], values[3]);
+				Administrator admin = new Administrator(values[0], values[1], values[2], values[3], values[4],
+						values[5]);
 				admins.add(admin);
+
 			}
 			adminsFile.close();
 		} catch (IOException e) {
@@ -123,7 +125,7 @@ public class Initializer {
 			String line;
 			while ((line = itemsFile.readLine()) != null) {
 				String[] values = line.split(",");
-				Item item = new Item(values[0], values[1], values[2], Integer.parseInt(values[3]));
+				Item item = new Item(values[0], values[1], values[2], values[3], Integer.parseInt(values[4]));
 				items.add(item);
 			}
 			itemsFile.close();
@@ -139,7 +141,7 @@ public class Initializer {
 			String line;
 			while ((line = boughtItemsFile.readLine()) != null) {
 				String[] values = line.split(",");
-				BoughtItem boughtItem = new BoughtItem(values[0], values[1]);
+				BoughtItem boughtItem = new BoughtItem(values[0], values[1], values[2]);
 				boughtItems.add(boughtItem);
 			}
 			boughtItemsFile.close();
@@ -159,7 +161,18 @@ public class Initializer {
 		return null;
 	}
 
+	public static Seller getSellerByUsername(String sellerUsername) {
+		ArrayList<Seller> allSellers = getSellers();
+		for (Seller seller : allSellers) {
+			if (seller.getUsername().equals(sellerUsername)) {
+				return seller;
+			}
+		}
+		return null;
+	}
+
 	public static void main(String[] args) {
-		System.out.println(Initializer.getAdmins().size());
+		System.out.println(Initializer.getAdmins().get(0).getCommaSeparatedData());
+		
 	}
 }
