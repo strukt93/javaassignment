@@ -6,11 +6,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import items.BoughtItem;
-import items.Item;
-import users.Administrator;
-import users.Buyer;
-import users.Seller;
+import entities.Administrator;
+import entities.BoughtItem;
+import entities.Buyer;
+import entities.FeeAccount;
+import entities.Item;
+import entities.Seller;
 
 public class Initializer {
 
@@ -30,6 +31,17 @@ public class Initializer {
 			BufferedReader sellersFile = new BufferedReader(new FileReader("files/sellers.txt"));
 			ArrayList<Seller> sellers = initializeSellers(sellersFile);
 			return sellers;
+		} catch (FileNotFoundException e) {
+
+		}
+		return null;
+	}
+
+	public static ArrayList<FeeAccount> getFeeAccounts() {
+		try {
+			BufferedReader feeAccountsFile = new BufferedReader(new FileReader("files/fee_accounts.txt"));
+			ArrayList<FeeAccount> feeAccounts = initializeFeeAccounts(feeAccountsFile);
+			return feeAccounts;
 		} catch (FileNotFoundException e) {
 
 		}
@@ -109,7 +121,8 @@ public class Initializer {
 			String line;
 			while ((line = sellersFile.readLine()) != null) {
 				String[] values = line.split(",");
-				Seller seller = new Seller(values[1], values[2], values[3], values[4], values[5], values[6]);
+				Seller seller = new Seller(values[0], values[1], values[2], values[3], values[4], values[5],
+						getFeeAccountBySellerUsername(values[0]));
 				sellers.add(seller);
 			}
 			sellersFile.close();
@@ -119,13 +132,31 @@ public class Initializer {
 		return sellers;
 	}
 
+	private static ArrayList<FeeAccount> initializeFeeAccounts(BufferedReader feeAccountsFile) {
+		ArrayList<FeeAccount> accounts = new ArrayList<FeeAccount>();
+		try {
+			String line;
+			while ((line = feeAccountsFile.readLine()) != null) {
+				String[] values = line.split(",");
+				FeeAccount account = new FeeAccount(values[0], Double.parseDouble(values[1]));
+				accounts.add(account);
+
+			}
+			feeAccountsFile.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return accounts;
+	}
+
 	private static ArrayList<Item> initializeItems(BufferedReader itemsFile) {
 		ArrayList<Item> items = new ArrayList<Item>();
 		try {
 			String line;
 			while ((line = itemsFile.readLine()) != null) {
 				String[] values = line.split(",");
-				Item item = new Item(values[0], values[1], values[2], values[3], Integer.parseInt(values[4]));
+				Item item = new Item(values[0], values[1], values[2], values[3], Integer.parseInt(values[4]),
+						Boolean.parseBoolean(values[5]));
 				items.add(item);
 			}
 			itemsFile.close();
@@ -171,8 +202,18 @@ public class Initializer {
 		return null;
 	}
 
+	public static FeeAccount getFeeAccountBySellerUsername(String sellerUsername) {
+		ArrayList<FeeAccount> allAccounts = getFeeAccounts();
+		for (FeeAccount account : allAccounts) {
+			if (account.getSellerUsername().equals(sellerUsername)) {
+				return account;
+			}
+		}
+		return null;
+	}
+
 	public static void main(String[] args) {
 		System.out.println(Initializer.getAdmins().get(0).getCommaSeparatedData());
-		
+
 	}
 }

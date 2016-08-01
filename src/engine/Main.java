@@ -1,10 +1,11 @@
 package engine;
 
-import users.Administrator;
+import entities.Seller;
 
 public class Main {
 	public static void main(String args[]) {
-		Administrator admin = Initializer.getAdmins().get(0);
-		admin.editContactNumber("123123123", 1);
+		Seller s = Initializer.getSellers().get(0);
+		s.addFundsToFeeAccount(200);
+		System.out.println(s.addItem(Initializer.getItems().get(0)));
 	}
 }

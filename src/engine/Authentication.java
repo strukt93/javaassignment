@@ -2,9 +2,9 @@ package engine;
 
 import java.util.ArrayList;
 
-import users.Administrator;
-import users.Buyer;
-import users.Seller;
+import entities.Administrator;
+import entities.Buyer;
+import entities.Seller;
 
 public class Authentication {
 	static Initializer initializer = new Initializer();
