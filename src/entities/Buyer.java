@@ -16,11 +16,16 @@ public class Buyer extends User {
 	}
 
 	public void buyItem(Item item) {
-		BufferedWriter writer = getBoughtItemsFileWriter();
+		BufferedWriter itemsWriter = getBoughtItemsFileWriter();
+		BufferedWriter feesWriter = getSuccessFeesFileWriter();
 		try {
-			writer.write(item.getName() + "," + this.getUsername() + "," + item.getSellerUsername()
+			itemsWriter.write(item.getName() + "," + this.getUsername() + "," + item.getSellerUsername()
 					+ System.lineSeparator());
-			writer.close();
+			feesWriter.write(item.getName() + "," + item.getSuccessFee());
+			itemsWriter.flush();
+			feesWriter.flush();
+			itemsWriter.close();
+			feesWriter.close();
 			this.increaseRating();
 		} catch (IOException e) {
 
@@ -39,10 +44,21 @@ public class Buyer extends User {
 		return boughtItems;
 	}
 
-	public BufferedWriter getBoughtItemsFileWriter() {
+	private BufferedWriter getBoughtItemsFileWriter() {
 		File boughtItems = new File("files/bought_items.txt");
 		try {
 			FileWriter fileWriter = new FileWriter(boughtItems, true);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			return bufferedWriter;
+		} catch (IOException e) {
+			return null;
+		}
+	}
+
+	private BufferedWriter getSuccessFeesFileWriter() {
+		File successFees = new File("files/success_fees.txt");
+		try {
+			FileWriter fileWriter = new FileWriter(successFees, true);
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 			return bufferedWriter;
 		} catch (IOException e) {

@@ -12,6 +12,7 @@ import entities.Buyer;
 import entities.FeeAccount;
 import entities.Item;
 import entities.Seller;
+import entities.SuccessFee;
 
 public class Initializer {
 
@@ -79,6 +80,34 @@ public class Initializer {
 
 		}
 		return null;
+	}
+
+	public static ArrayList<SuccessFee> getSuccessFees() {
+		try {
+			BufferedReader successFeesFile = new BufferedReader(new FileReader("files/success_fees.txt"));
+			ArrayList<SuccessFee> successFees = initializeSuccessFees(successFeesFile);
+			return successFees;
+		} catch (FileNotFoundException e) {
+
+		}
+		return null;
+	}
+
+	private static ArrayList<SuccessFee> initializeSuccessFees(BufferedReader successFeesFile) {
+		ArrayList<SuccessFee> successFees = new ArrayList<SuccessFee>();
+		try {
+			String line;
+			while ((line = successFeesFile.readLine()) != null) {
+				String[] values = line.split(",");
+				SuccessFee successFee = new SuccessFee(values[0], Double.parseDouble(values[1]));
+				successFees.add(successFee);
+
+			}
+			successFeesFile.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return successFees;
 	}
 
 	private static ArrayList<Administrator> initializeAdmins(BufferedReader adminsFile) {
