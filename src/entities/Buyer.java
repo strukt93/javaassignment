@@ -11,8 +11,8 @@ import engine.Initializer;
 public class Buyer extends User {
 
 	public Buyer(String username, String password, String name, String emailAddress, String contactNumber,
-			String address) {
-		super(username, password, name, emailAddress, contactNumber, address);
+			String address, int rating) {
+		super(username, password, name, emailAddress, contactNumber, address, rating);
 	}
 
 	public void buyItem(Item item) {
@@ -26,7 +26,10 @@ public class Buyer extends User {
 			feesWriter.flush();
 			itemsWriter.close();
 			feesWriter.close();
-			this.increaseRating();
+			Seller itemSeller = Initializer.getSellerByUsername(item.getSellerUsername());
+			itemSeller.updateRating(3);
+			itemSeller.deductSuccessFee(item.getSuccessFee());
+			this.updateRating(2);
 		} catch (IOException e) {
 
 		}

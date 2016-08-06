@@ -1,0 +1,1 @@
+buyer1,12345,hamada,adasd@asd.com,123123123,asdasdasd,10

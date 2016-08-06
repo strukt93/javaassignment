@@ -5,13 +5,16 @@ import java.io.File;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import engine.Initializer;
 
 public class Seller extends User {
 	private FeeAccount account;
 
 	public Seller(String username, String password, String name, String emailAddress, String contactNumber,
-			String address, FeeAccount account) {
-		super(username, password, name, emailAddress, contactNumber, address);
+			String address, int rating, FeeAccount account) {
+		super(username, password, name, emailAddress, contactNumber, address, rating);
 		this.account = account;
 	}
 
@@ -31,6 +34,17 @@ public class Seller extends User {
 		}
 	}
 
+	public ArrayList<Item> getListedItems() {
+		ArrayList<Item> allItems = Initializer.getItems();
+		ArrayList<Item> items = new ArrayList<Item>();
+		for (Item item : allItems) {
+			if (item.getSellerUsername().equals(this.getUsername())) {
+				items.add(item);
+			}
+		}
+		return items;
+	}
+
 	public double getFeeAccountBalance() {
 		return getFeeAccount().getBalance();
 	}
@@ -41,6 +55,10 @@ public class Seller extends User {
 
 	public void addFundsToFeeAccount(double funds) {
 		account.updateFunds(funds);
+	}
+
+	public void deductSuccessFee(double successFee) {
+		account.updateFunds(-successFee);
 	}
 
 	public boolean hasSufficientCredit() {

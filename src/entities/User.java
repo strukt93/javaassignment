@@ -20,14 +20,14 @@ public abstract class User {
 	private int rating;
 
 	public User(String username, String password, String name, String emailAddress, String contactNumber,
-			String address) {
+			String address, int rating) {
 		this.username = username;
 		this.password = password;
 		this.name = name;
 		this.emailAddress = emailAddress;
 		this.contactNumber = contactNumber;
 		this.address = address;
-		rating = 0;
+		this.rating = rating;
 	}
 
 	public String getContactNumber() {
@@ -198,7 +198,6 @@ public abstract class User {
 		BufferedWriter writer = getBufferedWriter(type);
 		try {
 			for (String user : users) {
-				System.out.println(user);
 				writer.write(user + System.lineSeparator());
 			}
 			writer.flush();
@@ -209,7 +208,7 @@ public abstract class User {
 
 	public String getCommaSeparatedData() {
 		return getUsername() + "," + getPassword() + "," + getName() + "," + getEmailAddress() + ","
-				+ getContactNumber() + "," + getAddress();
+				+ getContactNumber() + "," + getAddress() + "," + getRating();
 	}
 
 }

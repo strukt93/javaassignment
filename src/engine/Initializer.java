@@ -18,7 +18,7 @@ public class Initializer {
 
 	public static ArrayList<Buyer> getBuyers() {
 		try {
-			BufferedReader buyersFile = new BufferedReader(new FileReader("files/admins.txt"));
+			BufferedReader buyersFile = new BufferedReader(new FileReader("files/buyers.txt"));
 			ArrayList<Buyer> buyers = initializeBuyers(buyersFile);
 			return buyers;
 		} catch (FileNotFoundException e) {
@@ -73,7 +73,7 @@ public class Initializer {
 
 	public static ArrayList<BoughtItem> getBoughtItems() {
 		try {
-			BufferedReader boughtItemsFile = new BufferedReader(new FileReader("files/items.txt"));
+			BufferedReader boughtItemsFile = new BufferedReader(new FileReader("files/bought_items.txt"));
 			ArrayList<BoughtItem> boughtItems = initializeBoughtItems(boughtItemsFile);
 			return boughtItems;
 		} catch (FileNotFoundException e) {
@@ -134,7 +134,8 @@ public class Initializer {
 			String line;
 			while ((line = buyersFile.readLine()) != null) {
 				String[] values = line.split(",");
-				Buyer buyer = new Buyer(values[1], values[2], values[3], values[4], values[5], values[6]);
+				Buyer buyer = new Buyer(values[0], values[1], values[2], values[3], values[4], values[5],
+						Integer.parseInt(values[6]));
 				buyers.add(buyer);
 			}
 			buyersFile.close();
@@ -151,7 +152,7 @@ public class Initializer {
 			while ((line = sellersFile.readLine()) != null) {
 				String[] values = line.split(",");
 				Seller seller = new Seller(values[0], values[1], values[2], values[3], values[4], values[5],
-						getFeeAccountBySellerUsername(values[0]));
+						Integer.parseInt(values[6]), getFeeAccountBySellerUsername(values[0]));
 				sellers.add(seller);
 			}
 			sellersFile.close();
