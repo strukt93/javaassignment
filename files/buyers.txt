@@ -1,1 +1,3 @@
-buyer1,12345,hamada,adasd@asd.com,123123123,asdasdasd,10
+John,pass,johnny,j@gmail.com,111111111,kl,2
+Emily,iloveyou,emy,emilyems@yahoo.com,1123555,johor,20
+Mustafa,passw0rd,mustafa,mustafa@gmail.com,1235677,home,8

@@ -21,7 +21,7 @@ public class Buyer extends User {
 		try {
 			itemsWriter.write(item.getName() + "," + this.getUsername() + "," + item.getSellerUsername()
 					+ System.lineSeparator());
-			feesWriter.write(item.getName() + "," + item.getSuccessFee());
+			feesWriter.write(item.getName() + "," + item.getSuccessFee() + System.lineSeparator());
 			itemsWriter.flush();
 			feesWriter.flush();
 			itemsWriter.close();

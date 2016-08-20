@@ -185,8 +185,8 @@ public class Initializer {
 			String line;
 			while ((line = itemsFile.readLine()) != null) {
 				String[] values = line.split(",");
-				Item item = new Item(values[0], values[1], values[2], values[3], Integer.parseInt(values[4]),
-						Boolean.parseBoolean(values[5]));
+				Item item = new Item(values[0], values[1], values[2], values[3], values[4], Integer.parseInt(values[5]),
+						Boolean.parseBoolean(values[6]));
 				items.add(item);
 			}
 			itemsFile.close();
@@ -240,6 +240,17 @@ public class Initializer {
 			}
 		}
 		return null;
+	}
+
+	public static ArrayList<String> getAvailableCategories() {
+		ArrayList<String> availableCategories = new ArrayList<String>();
+		ArrayList<Item> allItems = getItems();
+		for (Item item : allItems) {
+			if (!availableCategories.contains(item.getType())) {
+				availableCategories.add(item.getType());
+			}
+		}
+		return availableCategories;
 	}
 
 	public static void main(String[] args) {

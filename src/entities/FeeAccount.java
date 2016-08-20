@@ -33,7 +33,7 @@ public class FeeAccount {
 	public void updateFunds(double funds) {
 		ArrayList<String> allAccounts = getAccounts();
 		this.addFunds(funds);
-		allAccounts.add(this.getCommaSeparatedValues());
+		allAccounts.add(this.getCommaSeparatedData());
 		updateFeeAccountsFile(allAccounts);
 	}
 
@@ -93,7 +93,7 @@ public class FeeAccount {
 		return allAccounts;
 	}
 
-	public String getCommaSeparatedValues() {
+	public String getCommaSeparatedData() {
 		return this.getSellerUsername() + "," + this.getBalance();
 	}
 }

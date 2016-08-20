@@ -24,8 +24,7 @@ public class Seller extends User {
 		} else {
 			BufferedWriter writer = getBufferedWriter();
 			try {
-				System.out.println(item.getCommaSeparatedValues());
-				writer.write(item.getCommaSeparatedValues() + System.lineSeparator());
+				writer.write(item.getCommaSeparatedData() + System.lineSeparator());
 				writer.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -40,6 +39,17 @@ public class Seller extends User {
 		for (Item item : allItems) {
 			if (item.getSellerUsername().equals(this.getUsername())) {
 				items.add(item);
+			}
+		}
+		return items;
+	}
+
+	public ArrayList<Item> getSoldItems() {
+		ArrayList<BoughtItem> boughtItems = Initializer.getBoughtItems();
+		ArrayList<Item> items = new ArrayList<Item>();
+		for (BoughtItem boughtItem : boughtItems) {
+			if (boughtItem.getSellerUsername().equals(this.getUsername())) {
+				items.add(Initializer.getItemByName(boughtItem.getItemName()));
 			}
 		}
 		return items;

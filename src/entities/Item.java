@@ -5,14 +5,17 @@ public class Item {
 	private String sellerUsername;
 	private String description;
 	private String type;
+	private String method;
 	private int cost;
 	private boolean sold;
 
-	public Item(String name, String sellerUsername, String description, String type, int cost, boolean sold) {
+	public Item(String name, String sellerUsername, String description, String type, String method, int cost,
+			boolean sold) {
 		this.name = name;
 		this.sellerUsername = sellerUsername;
 		this.description = description;
 		this.type = type;
+		this.method = method;
 		this.cost = cost;
 		this.sold = sold;
 	}
@@ -41,6 +44,10 @@ public class Item {
 		return sellerUsername;
 	}
 
+	public String getMethod() {
+		return method;
+	}
+
 	public double getSuccessFee() {
 		if (this.cost >= 5 && this.cost <= 100) {
 			return cost * 0.05;
@@ -54,8 +61,8 @@ public class Item {
 		return 0;
 	}
 
-	public String getCommaSeparatedValues() {
-		return getName() + "," + getSellerUsername() + "," + getDescription() + "," + getType() + "," + getCost() + ","
-				+ isSold();
+	public String getCommaSeparatedData() {
+		return getName() + "," + getSellerUsername() + "," + getDescription() + "," + getType() + "," + getMethod()
+				+ "," + getCost() + "," + isSold();
 	}
 }

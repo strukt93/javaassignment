@@ -22,4 +22,8 @@ public class BoughtItem {
 	public String getSellerUsername() {
 		return sellerUsername;
 	}
+
+	public String getCommaSeparatedData() {
+		return getItemName() + "," + getBuyerUsername() + "," + getSellerUsername();
+	}
 }

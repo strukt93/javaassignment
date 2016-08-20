@@ -1,3 +1,8 @@
-test,seller,new book,book,1235,false
-test,seller,new book,book,1235,false
-test,seller,new book,book,1235,false
+Chair,Andrew,Wooden chair and stuff,Furniture,Pickup,100,false
+Introduction to the Theory of Computation,Mustafa,Awesome book will blow your mind,Books,Delivery,250,false
+HP Laptop,Linda,Mostly broken but I'm broke too man xD,Laptops,Pickup,5,false
+HTC One M8,Mustafa,I wanna get rid of this piece of **** at any cost,Mobile Phones,Delivery,50,false
+Sharp Air Conditioner,Andrew,2.4 hp aircond,Air Conditioners,Delivery,300,false
+Wooden Dummy,Linda,Get that if you want to learn Kung-Fu,Others,Delivery,100,false
+Ferrarri California,Mustafa,I wanna buy a new Lamborghini,Vehicles,Pickup,1000000,false
+Fridge,Mustafa,Unknown fridge,Electronics,Delivery,12345,false

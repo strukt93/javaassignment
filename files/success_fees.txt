@@ -1,1 +1,1 @@
-test,185.25test,185.25test,185.25test,185.25test,185.25
+Chair,5.0

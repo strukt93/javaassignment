@@ -1,1 +1,3 @@
-seller,1216.75
+Mustafa,1216.75
+Linda,1216.75
+Andrew,1211.75
