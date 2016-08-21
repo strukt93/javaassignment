@@ -9,6 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/*
+ * This class represents the fee accounts owned by Sellers.
+ * */
 public class FeeAccount {
 	private String sellerUsername;
 	private double balance;

@@ -1,7 +1,5 @@
 package engine;
 
-import java.util.ArrayList;
-import entities.*;
 import gui.LoginWindow;
 
 public class Main {

@@ -9,6 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/*
+ * This is the parent class of all the types of users in the system, 
+ * it is abstract as there will be no objects initialized from it.
+ */
 public abstract class User {
 
 	private String username;
@@ -82,6 +86,10 @@ public abstract class User {
 		this.address = address;
 	}
 
+	/*
+	 * This method increases the rating of a Seller/Buyer by 1 and writes
+	 * changes to the file.
+	 */
 	public void updateRating(int type) {
 		ArrayList<String> users = getUsers(type);
 		this.increaseRating();
@@ -89,6 +97,12 @@ public abstract class User {
 		updateUsersFile(users, type);
 	}
 
+	/*
+	 * All the methods starting with "edit*" are called when a user attempts to
+	 * edit their data in the GUI, it takes the value, edits it in the
+	 * respective user, then calls updateUsersFile() to actually apply changes
+	 * in the file.
+	 */
 	public void editAddress(String newAddress, int type) {
 		ArrayList<String> users = getUsers(type);
 		this.setAddress(newAddress);
@@ -124,6 +138,10 @@ public abstract class User {
 		updateUsersFile(users, type);
 	}
 
+	/*
+	 * This method uses getUsersFromFile(), removes the current user from the
+	 * ArrayList, then returns it.
+	 */
 	private ArrayList<String> getUsers(int type) {
 		ArrayList<String> allUsers = getUsersFromFile(type);
 		for (int i = 0; i < allUsers.size(); i++) {
@@ -135,6 +153,10 @@ public abstract class User {
 		return allUsers;
 	}
 
+	/*
+	 * Read user information from file, the "type" argument is an identifier
+	 * that tells us the type of user.
+	 */
 	private ArrayList<String> getUsersFromFile(int type) {
 		BufferedReader reader = getBufferedReader(type);
 		String line;
@@ -148,6 +170,10 @@ public abstract class User {
 		return users;
 	}
 
+	/*
+	 * This method returns a BufferedReader depending on the type of user
+	 * supplied.
+	 */
 	private BufferedReader getBufferedReader(int type) {
 		BufferedReader reader;
 		try {
@@ -171,6 +197,10 @@ public abstract class User {
 		return reader;
 	}
 
+	/*
+	 * This method returns a BufferedWriter depending on the type of user
+	 * supplied.
+	 */
 	private BufferedWriter getBufferedWriter(int type) {
 		BufferedWriter writer;
 		try {
@@ -194,6 +224,10 @@ public abstract class User {
 		return writer;
 	}
 
+	/*
+	 * This method updates the respective users' file after an edit is
+	 * successful.
+	 */
 	private void updateUsersFile(ArrayList<String> users, int type) {
 		BufferedWriter writer = getBufferedWriter(type);
 		try {
@@ -206,6 +240,10 @@ public abstract class User {
 		}
 	}
 
+	/*
+	 * This method returns a String that is the CSV representation of the
+	 * current user's data.
+	 */
 	public String getCommaSeparatedData() {
 		return getUsername() + "," + getPassword() + "," + getName() + "," + getEmailAddress() + ","
 				+ getContactNumber() + "," + getAddress() + "," + getRating();

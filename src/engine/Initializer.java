@@ -14,8 +14,15 @@ import entities.Item;
 import entities.Seller;
 import entities.SuccessFee;
 
+/*
+ * This class is the backbone of the system, it only contains static methods that are
+ * responsible for reading data out of files and finding data given keys.
+ */
 public class Initializer {
-
+	/*
+	 * This method is responsible for reading buyers' information from their
+	 * respective file.
+	 */
 	public static ArrayList<Buyer> getBuyers() {
 		try {
 			BufferedReader buyersFile = new BufferedReader(new FileReader("files/buyers.txt"));
@@ -27,6 +34,10 @@ public class Initializer {
 		return null;
 	}
 
+	/*
+	 * This method is responsible for reading sellers' information from their
+	 * respective file.
+	 */
 	public static ArrayList<Seller> getSellers() {
 		try {
 			BufferedReader sellersFile = new BufferedReader(new FileReader("files/sellers.txt"));
@@ -38,6 +49,10 @@ public class Initializer {
 		return null;
 	}
 
+	/*
+	 * This method is responsible for reading fee accounts' information from
+	 * their respective file.
+	 */
 	public static ArrayList<FeeAccount> getFeeAccounts() {
 		try {
 			BufferedReader feeAccountsFile = new BufferedReader(new FileReader("files/fee_accounts.txt"));
@@ -49,6 +64,10 @@ public class Initializer {
 		return null;
 	}
 
+	/*
+	 * This method is responsible for reading administrators' information from
+	 * their respective file.
+	 */
 	public static ArrayList<Administrator> getAdmins() {
 		try {
 			BufferedReader adminsFile = new BufferedReader(new FileReader("files/admins.txt"));
@@ -60,6 +79,10 @@ public class Initializer {
 		return null;
 	}
 
+	/*
+	 * This method is responsible for reading items' information from their
+	 * respective file.
+	 */
 	public static ArrayList<Item> getItems() {
 		try {
 			BufferedReader itemsFile = new BufferedReader(new FileReader("files/items.txt"));
@@ -71,6 +94,10 @@ public class Initializer {
 		return null;
 	}
 
+	/*
+	 * This method is responsible for reading bought items' information from
+	 * their respective file.
+	 */
 	public static ArrayList<BoughtItem> getBoughtItems() {
 		try {
 			BufferedReader boughtItemsFile = new BufferedReader(new FileReader("files/bought_items.txt"));
@@ -82,6 +109,10 @@ public class Initializer {
 		return null;
 	}
 
+	/*
+	 * This method is responsible for reading success fees' information from
+	 * their respective file.
+	 */
 	public static ArrayList<SuccessFee> getSuccessFees() {
 		try {
 			BufferedReader successFeesFile = new BufferedReader(new FileReader("files/success_fees.txt"));
@@ -93,6 +124,10 @@ public class Initializer {
 		return null;
 	}
 
+	/*
+	 * This method initializes new SuccessFee objects from the data returned
+	 * from the file.
+	 */
 	private static ArrayList<SuccessFee> initializeSuccessFees(BufferedReader successFeesFile) {
 		ArrayList<SuccessFee> successFees = new ArrayList<SuccessFee>();
 		try {
@@ -110,6 +145,10 @@ public class Initializer {
 		return successFees;
 	}
 
+	/*
+	 * This method initializes new Administrator objects from the data returned
+	 * from the file.
+	 */
 	private static ArrayList<Administrator> initializeAdmins(BufferedReader adminsFile) {
 		ArrayList<Administrator> admins = new ArrayList<Administrator>();
 		try {
@@ -128,6 +167,10 @@ public class Initializer {
 		return admins;
 	}
 
+	/*
+	 * This method initializes new Buyer objects from the data returned from the
+	 * file.
+	 */
 	private static ArrayList<Buyer> initializeBuyers(BufferedReader buyersFile) {
 		ArrayList<Buyer> buyers = new ArrayList<Buyer>();
 		try {
@@ -145,6 +188,10 @@ public class Initializer {
 		return buyers;
 	}
 
+	/*
+	 * This method initializes new Seller objects from the data returned from
+	 * the file.
+	 */
 	private static ArrayList<Seller> initializeSellers(BufferedReader sellersFile) {
 		ArrayList<Seller> sellers = new ArrayList<Seller>();
 		try {
@@ -162,6 +209,10 @@ public class Initializer {
 		return sellers;
 	}
 
+	/*
+	 * This method initializes new FeeAccount objects from the data returned
+	 * from the file.
+	 */
 	private static ArrayList<FeeAccount> initializeFeeAccounts(BufferedReader feeAccountsFile) {
 		ArrayList<FeeAccount> accounts = new ArrayList<FeeAccount>();
 		try {
@@ -179,6 +230,10 @@ public class Initializer {
 		return accounts;
 	}
 
+	/*
+	 * This method initializes new Item objects from the data returned from the
+	 * file.
+	 */
 	private static ArrayList<Item> initializeItems(BufferedReader itemsFile) {
 		ArrayList<Item> items = new ArrayList<Item>();
 		try {
@@ -196,6 +251,10 @@ public class Initializer {
 		return items;
 	}
 
+	/*
+	 * This method initializes new BoughtItem objects from the data returned
+	 * from the file.
+	 */
 	private static ArrayList<BoughtItem> initializeBoughtItems(BufferedReader boughtItemsFile) {
 		ArrayList<BoughtItem> boughtItems = new ArrayList<BoughtItem>();
 		try {
@@ -212,6 +271,10 @@ public class Initializer {
 		return boughtItems;
 	}
 
+	/*
+	 * This method returns an Item after looking it up using it's name as the
+	 * key.
+	 */
 	public static Item getItemByName(String itemName) {
 		ArrayList<Item> allItems = getItems();
 		for (Item item : allItems) {
@@ -222,6 +285,10 @@ public class Initializer {
 		return null;
 	}
 
+	/*
+	 * This method returns a Seller after looking them up using their username
+	 * as the key.
+	 */
 	public static Seller getSellerByUsername(String sellerUsername) {
 		ArrayList<Seller> allSellers = getSellers();
 		for (Seller seller : allSellers) {
@@ -232,6 +299,10 @@ public class Initializer {
 		return null;
 	}
 
+	/*
+	 * This method returns a FeeAccount after looking it up using it's owner
+	 * Seller's username as the key.
+	 */
 	public static FeeAccount getFeeAccountBySellerUsername(String sellerUsername) {
 		ArrayList<FeeAccount> allAccounts = getFeeAccounts();
 		for (FeeAccount account : allAccounts) {
@@ -242,6 +313,10 @@ public class Initializer {
 		return null;
 	}
 
+	/*
+	 * This method returns all the categories of listed items available in the
+	 * system.
+	 */
 	public static ArrayList<String> getAvailableCategories() {
 		ArrayList<String> availableCategories = new ArrayList<String>();
 		ArrayList<Item> allItems = getItems();
@@ -251,10 +326,5 @@ public class Initializer {
 			}
 		}
 		return availableCategories;
-	}
-
-	public static void main(String[] args) {
-		System.out.println(Initializer.getAdmins().get(0).getCommaSeparatedData());
-
 	}
 }

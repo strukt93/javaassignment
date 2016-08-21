@@ -1,5 +1,8 @@
 package entities;
 
+/*
+ * This class is a representation of success fees deducted from successful purchases.
+ * */
 public class SuccessFee {
 	private String itemName;
 	private double successFee;

@@ -1,5 +1,8 @@
 package entities;
 
+/*
+ * This class represents the items in the system.
+ * */
 public class Item {
 	private String name;
 	private String sellerUsername;

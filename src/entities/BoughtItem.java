@@ -1,5 +1,8 @@
 package entities;
 
+/*
+ * This class represents items that have been bought in the system.
+ * */
 public class BoughtItem {
 	private String itemName;
 	private String buyerUsername;

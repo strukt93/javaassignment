@@ -6,6 +6,10 @@ import entities.Administrator;
 import entities.Buyer;
 import entities.Seller;
 
+/*
+ * This class is only responsible for the authentication of users when they attempt to login.
+ * It's static because we only need to access it's methods, no need to create objects out of it.
+ */
 public class Authentication {
 	static Initializer initializer = new Initializer();
 
@@ -37,10 +41,5 @@ public class Authentication {
 			}
 		}
 		return null;
-	}
-
-	public static void main(String[] args) {
-		Administrator a = Authentication.adminLogin("admin", "admin");
-		System.out.println(a.getCommaSeparatedData());
 	}
 }

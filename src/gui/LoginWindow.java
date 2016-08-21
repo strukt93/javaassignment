@@ -41,7 +41,7 @@ public class LoginWindow extends JFrame {
 		super("Login");
 	}
 
-	public void setupAndShow() {
+	public void initialize() {
 		loginButton = new JButton("Login");
 		panel = new JPanel();
 		container = new JPanel();
@@ -54,22 +54,9 @@ public class LoginWindow extends JFrame {
 		passwordField = new JPasswordField();
 		usernameLabel = new JLabel("Username:");
 		passwordlabel = new JLabel("Password:");
+	}
 
-		setButtonListener(loginButton);
-
-		setSize(400, 400);
-		setLocation(500, 280);
-		setLayout(new GridBagLayout());
-		panel.setLayout(new GridLayout(0, 2));
-		container.setLayout(new GridLayout(0, 1));
-		message.setHorizontalAlignment(SwingConstants.CENTER);
-		message.setForeground(Color.RED);
-
-		admin.setSelected(true);
-		setRadioButtonListener(admin);
-		setRadioButtonListener(buyer);
-		setRadioButtonListener(seller);
-
+	public void addComponents() {
 		panel.add(usernameLabel);
 		panel.add(usernameField);
 		panel.add(passwordlabel);
@@ -82,11 +69,32 @@ public class LoginWindow extends JFrame {
 		container.add(loginButton);
 		container.add(message);
 		add(container);
+	}
+
+	public void setupAndShow() {
+		initialize();
+		setLoginButtonListener(loginButton);
+
+		admin.setSelected(true);
+		setRadioButtonListener(admin);
+		setRadioButtonListener(buyer);
+		setRadioButtonListener(seller);
+
+		panel.setLayout(new GridLayout(0, 2));
+		container.setLayout(new GridLayout(0, 1));
+		message.setHorizontalAlignment(SwingConstants.CENTER);
+		message.setForeground(Color.RED);
+
+		addComponents();
+
+		setSize(400, 400);
+		setLocationRelativeTo(null);
+		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
-	public void setButtonListener(final JButton b) {
+	public void setLoginButtonListener(final JButton b) {
 		b.addActionListener(new ActionListener() {
 
 			@Override
@@ -97,6 +105,7 @@ public class LoginWindow extends JFrame {
 					if (admin == null) {
 						message.setText("Incorrect admin credentials");
 					} else {
+						setVisible(false);
 						new AdminWindow(admin);
 					}
 				}

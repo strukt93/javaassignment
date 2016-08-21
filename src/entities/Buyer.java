@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 import engine.Initializer;
 
+/*
+ * This class is the representation of the buyers in the system.
+ * */
 public class Buyer extends User {
 
 	public Buyer(String username, String password, String name, String emailAddress, String contactNumber,
@@ -15,6 +18,10 @@ public class Buyer extends User {
 		super(username, password, name, emailAddress, contactNumber, address, rating);
 	}
 
+	/*
+	 * This method gets called from the GUI when the Buyer attempts to buy an
+	 * Item.
+	 */
 	public void buyItem(Item item) {
 		BufferedWriter itemsWriter = getBoughtItemsFileWriter();
 		BufferedWriter feesWriter = getSuccessFeesFileWriter();
@@ -35,6 +42,10 @@ public class Buyer extends User {
 		}
 	}
 
+	/*
+	 * This method gets called from the GUI when the Buyer attempts to view
+	 * their old purchases.
+	 */
 	public ArrayList<Item> viewBuyingRecords() {
 		ArrayList<BoughtItem> allBoughtItems = Initializer.getBoughtItems();
 		ArrayList<Item> boughtItems = new ArrayList<Item>();
@@ -67,12 +78,6 @@ public class Buyer extends User {
 		} catch (IOException e) {
 			return null;
 		}
-	}
-
-	public static void main(String[] args) {
-		// Buyer b = new Buyer("test123", "", "", "", "", "");
-		// Item i = new Item("item", "hamada", "", "", 123);
-		// b.buyItem(i);
 	}
 
 }
