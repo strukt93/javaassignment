@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -29,16 +30,25 @@ public class MainWindow extends JFrame {
 	JButton logoutButton;
 	GridBagConstraints gbc;
 
-	public void setEditAccountDetailsButtonListener() {
+	public void setEditAccountDetailsButtonListener(final String nameIn, final String emailAddressIn,
+			final String passwordIn, final String contactNumberIn, final String addressIn) {
+		for (ActionListener al : button1.getActionListeners()) {
+			button1.removeActionListener(al);
+		}
 		button1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JTextField name = new JTextField(5);
+				name.setText(nameIn);
 				JTextField emailAddress = new JTextField(5);
+				emailAddress.setText(emailAddressIn);
 				JPasswordField password = new JPasswordField(5);
+				password.setText(passwordIn);
 				JTextField contactNumber = new JTextField(5);
+				contactNumber.setText(contactNumberIn);
 				JTextField address = new JTextField(5);
+				address.setText(addressIn);
 
 				JPanel myPanel = new JPanel(new GridLayout(6, 2));
 				myPanel.add(new JLabel("Name:"));
@@ -91,17 +101,22 @@ public class MainWindow extends JFrame {
 		innerContainer.add(button4, gbc);
 	}
 
-	public void createComponents() {
+	public void initialize(String buttonOneText, String buttonTwoText, String buttonThreeText, String buttonFourText,
+			String name) {
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		welcomeContainer = new JPanel();
 		logoutContainer = new JPanel();
 		innerContainer = new JPanel(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		logoutButton = new JButton("Logout");
+		welcomeMessage = new JLabel("Welcome, " + name);
+		button1 = new JButton("Edit Account Details");
+		button2 = new JButton("Show Items on Sale");
+		button3 = new JButton("Show Bought Items");
+		button4 = new JButton("Show Success Fees");
 	}
 
 	public void addComponentsAndView() {
-		setEditAccountDetailsButtonListener();
 		setLogoutButtonListener();
 		welcomeContainer.add(welcomeMessage);
 		logoutContainer.add(logoutButton);
@@ -113,6 +128,14 @@ public class MainWindow extends JFrame {
 		setLocation(350, 200);
 		setSize(600, 400);
 		setVisible(true);
+	}
+
+	public void generateInfoBox(ArrayList<String> data, String title) {
+		String message = "";
+		for (String s : data) {
+			message = message + s + System.lineSeparator();
+		}
+		JOptionPane.showMessageDialog(null, message, title, JOptionPane.PLAIN_MESSAGE);
 	}
 
 	public void validateAndApplyEdits(String name, String emailAddress, String password, String contactNumber,

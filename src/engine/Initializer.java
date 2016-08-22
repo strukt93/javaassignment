@@ -313,6 +313,16 @@ public class Initializer {
 		return null;
 	}
 
+	public static Administrator getAdminByUsername(String adminUsername) {
+		ArrayList<Administrator> allAdmins = getAdmins();
+		for (Administrator admin : allAdmins) {
+			if (admin.getUsername().equals(adminUsername)) {
+				return admin;
+			}
+		}
+		return null;
+	}
+
 	/*
 	 * This method returns all the categories of listed items available in the
 	 * system.

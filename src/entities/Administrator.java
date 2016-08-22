@@ -18,17 +18,9 @@ public class Administrator extends User {
 	 * This method constructs a report of all the items that are on sale and
 	 * returns it. It is called from the GUI.
 	 */
-	public ArrayList<String> getItemsOnSale() {
+	public ArrayList<Item> getItemsOnSale() {
 		ArrayList<Item> allItems = Initializer.getItems();
-		ArrayList<String> parsedMessages = new ArrayList<String>();
-		for (Item item : allItems) {
-			String message = item.getSellerUsername() + " is selling " + item.getName();
-			if (item.isSold()) {
-				message += ". (Already sold out now).";
-			}
-			parsedMessages.add(message);
-		}
-		return parsedMessages;
+		return allItems;
 	}
 
 	/*
