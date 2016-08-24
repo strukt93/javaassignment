@@ -3,7 +3,6 @@ package gui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,24 +17,21 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class MainWindow extends JFrame {
+public abstract class MainWindow extends JFrame {
 	JPanel innerContainer;
 	JPanel welcomeContainer;
 	JPanel logoutContainer;
 	JLabel welcomeMessage;
-	JButton button1;
-	JButton button2;
-	JButton button3;
-	JButton button4;
+	JButton editAccountDetailsButton;
 	JButton logoutButton;
 	GridBagConstraints gbc;
 
 	public void setEditAccountDetailsButtonListener(final String nameIn, final String emailAddressIn,
 			final String passwordIn, final String contactNumberIn, final String addressIn) {
-		for (ActionListener al : button1.getActionListeners()) {
-			button1.removeActionListener(al);
+		for (ActionListener al : editAccountDetailsButton.getActionListeners()) {
+			editAccountDetailsButton.removeActionListener(al);
 		}
-		button1.addActionListener(new ActionListener() {
+		editAccountDetailsButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -83,26 +79,10 @@ public class MainWindow extends JFrame {
 	}
 
 	public void configureButtons() {
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.ipadx = 30;
-		gbc.ipady = 30;
-		gbc.insets = new Insets(10, 10, 10, 10);
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		innerContainer.add(button1, gbc);
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		innerContainer.add(button2, gbc);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		innerContainer.add(button3, gbc);
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		innerContainer.add(button4, gbc);
+
 	}
 
-	public void initialize(String buttonOneText, String buttonTwoText, String buttonThreeText, String buttonFourText,
-			String name) {
+	public void initialize(String name) {
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		welcomeContainer = new JPanel();
 		logoutContainer = new JPanel();
@@ -110,10 +90,6 @@ public class MainWindow extends JFrame {
 		gbc = new GridBagConstraints();
 		logoutButton = new JButton("Logout");
 		welcomeMessage = new JLabel("Welcome, " + name);
-		button1 = new JButton("Edit Account Details");
-		button2 = new JButton("Show Items on Sale");
-		button3 = new JButton("Show Bought Items");
-		button4 = new JButton("Show Success Fees");
 	}
 
 	public void addComponentsAndView() {

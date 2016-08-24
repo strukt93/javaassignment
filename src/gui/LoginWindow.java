@@ -115,7 +115,8 @@ public class LoginWindow extends JFrame {
 					if (buyer == null) {
 						message.setText("Incorrect buyer credentials");
 					} else {
-						System.out.println(buyer.getCommaSeparatedData());
+						setVisible(false);
+						new BuyerWindow(buyer);
 					}
 				}
 				if (seller.isSelected()) {
@@ -124,7 +125,8 @@ public class LoginWindow extends JFrame {
 					if (seller == null) {
 						message.setText("Incorrect seller credentials");
 					} else {
-						System.out.println(seller);
+						setVisible(false);
+						new SellerWindow(seller);
 					}
 				}
 			}

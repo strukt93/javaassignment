@@ -46,7 +46,7 @@ public class Administrator extends User {
 		ArrayList<SuccessFee> successFees = Initializer.getSuccessFees();
 		ArrayList<String> parsedMessages = new ArrayList<String>();
 		for (SuccessFee successFee : successFees) {
-			String message = successFee.getSuccessFee() + " was deducted from " + successFee.getItemName() + ".";
+			String message = successFee.getSuccessFee() + " RM was deducted from " + successFee.getItemName() + ".";
 			parsedMessages.add(message);
 		}
 		return parsedMessages;

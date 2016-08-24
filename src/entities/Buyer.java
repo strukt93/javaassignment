@@ -46,13 +46,16 @@ public class Buyer extends User {
 	 * This method gets called from the GUI when the Buyer attempts to view
 	 * their old purchases.
 	 */
-	public ArrayList<Item> viewBuyingRecords() {
+	public ArrayList<String> viewBuyingRecords() {
 		ArrayList<BoughtItem> allBoughtItems = Initializer.getBoughtItems();
-		ArrayList<Item> boughtItems = new ArrayList<Item>();
+		ArrayList<String> boughtItems = new ArrayList<String>();
 		for (BoughtItem item : allBoughtItems) {
 			if (item.getBuyerUsername().equals(this.getUsername())) {
 				Item boughtItem = Initializer.getItemByName(item.getItemName());
-				boughtItems.add(boughtItem);
+				String message = "";
+				message = "You have bought " + boughtItem.getName() + " that was sold by "
+						+ boughtItem.getSellerUsername() + " for " + boughtItem.getCost() + " RM";
+				boughtItems.add(message);
 			}
 		}
 		return boughtItems;

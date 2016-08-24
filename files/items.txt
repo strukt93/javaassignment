@@ -6,3 +6,4 @@ Sharp Air Conditioner,Andrew,2.4 hp aircond,Air Conditioners,Delivery,300,false
 Wooden Dummy,Linda,Get that if you want to learn Kung-Fu,Others,Delivery,100,false
 Ferrarri California,Mustafa,I wanna buy a new Lamborghini,Vehicles,Pickup,1000000,false
 Fridge,Mustafa,Unknown fridge,Electronics,Delivery,12345,false
+Laptop,Mustafa,asdasdasd,Car,Pickup,123,false

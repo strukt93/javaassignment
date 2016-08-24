@@ -45,12 +45,14 @@ public class Seller extends User {
 	 * This method calls getListedItems() from the Initializer class to get the
 	 * items listed by the current Seller.
 	 */
-	public ArrayList<Item> getListedItems() {
+	public ArrayList<String> getListedItems() {
 		ArrayList<Item> allItems = Initializer.getItems();
-		ArrayList<Item> items = new ArrayList<Item>();
+		ArrayList<String> items = new ArrayList<String>();
 		for (Item item : allItems) {
 			if (item.getSellerUsername().equals(this.getUsername())) {
-				items.add(item);
+				String message = "";
+				message = "You have listed " + item.getName() + " for " + item.getCost() + " RM";
+				items.add(message);
 			}
 		}
 		return items;
@@ -61,12 +63,16 @@ public class Seller extends User {
 	 * each BoughtItem for the Seller username, adds it to the collection of
 	 * items if true, then returns all the items.
 	 */
-	public ArrayList<Item> getSoldItems() {
+	public ArrayList<String> getSoldItems() {
 		ArrayList<BoughtItem> boughtItems = Initializer.getBoughtItems();
-		ArrayList<Item> items = new ArrayList<Item>();
+		ArrayList<String> items = new ArrayList<String>();
 		for (BoughtItem boughtItem : boughtItems) {
 			if (boughtItem.getSellerUsername().equals(this.getUsername())) {
-				items.add(Initializer.getItemByName(boughtItem.getItemName()));
+				Item item = Initializer.getItemByName(boughtItem.getItemName());
+				String message = "";
+				message = "You have sold " + item.getName() + " to " + boughtItem.getBuyerUsername() + " for "
+						+ item.getCost() + " RM";
+				items.add(message);
 			}
 		}
 		return items;

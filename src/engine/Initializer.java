@@ -323,6 +323,16 @@ public class Initializer {
 		return null;
 	}
 
+	public static Buyer getBuyerByUsername(String buyerUsername) {
+		ArrayList<Buyer> allBuyers = getBuyers();
+		for (Buyer buyer : allBuyers) {
+			if (buyer.getUsername().equals(buyerUsername)) {
+				return buyer;
+			}
+		}
+		return null;
+	}
+
 	/*
 	 * This method returns all the categories of listed items available in the
 	 * system.
