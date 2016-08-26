@@ -27,18 +27,16 @@ public class Seller extends User {
 	 * credit, and returns true after adding the Item otherwise.
 	 */
 	public boolean addItem(Item item) {
-		if (!hasSufficientCredit()) {
-			return false;
-		} else {
-			BufferedWriter writer = getBufferedWriter();
-			try {
-				writer.write(item.getCommaSeparatedData() + System.lineSeparator());
-				writer.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return true;
+
+		BufferedWriter writer = getBufferedWriter();
+		try {
+			writer.write(item.getCommaSeparatedData() + System.lineSeparator());
+			writer.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		return true;
+
 	}
 
 	/*

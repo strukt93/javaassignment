@@ -54,6 +54,11 @@ public class SellerWindow extends MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (!seller.hasSufficientCredit()) {
+					JOptionPane.showMessageDialog(null, "You don't have sufficient credit in your fee account.",
+							"Add New Item", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				JTextField itemName = new JTextField(5);
 				JTextField category = new JTextField(5);
 				JTextField price = new JTextField(5);
