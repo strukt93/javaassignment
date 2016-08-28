@@ -23,8 +23,8 @@ public class Buyer extends User {
 	 * Item.
 	 */
 	public void buyItem(Item item) {
-		BufferedWriter itemsWriter = getBoughtItemsFileWriter();
-		BufferedWriter feesWriter = getSuccessFeesFileWriter();
+		BufferedWriter itemsWriter = getBoughtItemsBufferredWriter();
+		BufferedWriter feesWriter = getSuccessFeesBufferedWriter();
 		try {
 			itemsWriter.write(item.getName() + "," + this.getUsername() + "," + item.getSellerUsername()
 					+ System.lineSeparator());
@@ -61,7 +61,7 @@ public class Buyer extends User {
 		return boughtItems;
 	}
 
-	private BufferedWriter getBoughtItemsFileWriter() {
+	private BufferedWriter getBoughtItemsBufferredWriter() {
 		File boughtItems = new File("files/bought_items.txt");
 		try {
 			FileWriter fileWriter = new FileWriter(boughtItems, true);
@@ -72,7 +72,7 @@ public class Buyer extends User {
 		}
 	}
 
-	private BufferedWriter getSuccessFeesFileWriter() {
+	private BufferedWriter getSuccessFeesBufferedWriter() {
 		File successFees = new File("files/success_fees.txt");
 		try {
 			FileWriter fileWriter = new FileWriter(successFees, true);

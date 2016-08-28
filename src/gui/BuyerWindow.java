@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -65,8 +66,22 @@ public class BuyerWindow extends MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Item> allItems = Initializer.getItems();
-				generateItemsFrame(allItems, "Items On Sale");
+				String[] cats = (String[]) Initializer.getAvailableCategories().toArray(new String[0]);
+				@SuppressWarnings({ "rawtypes", "unchecked" })
+				JComboBox jcb = new JComboBox(cats);
+				int result = JOptionPane.showConfirmDialog(null, jcb, "Select Item Category",
+						JOptionPane.OK_CANCEL_OPTION);
+				if (result == JOptionPane.OK_OPTION) {
+					if (jcb.getSelectedIndex() == 0) {
+						ArrayList<Item> allItems = Initializer.getItems();
+						generateItemsFrame(allItems, "All Items On Sale");
+					} else {
+						ArrayList<Item> items = Initializer.getItemsByCategory(jcb.getSelectedItem().toString());
+						generateItemsFrame(items,
+								"Items In The " + jcb.getSelectedItem().toString() + " Category On Sale");
+					}
+				}
+
 			}
 		});
 	}

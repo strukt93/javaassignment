@@ -11,7 +11,6 @@ import entities.Seller;
  * It's static because we only need to access it's methods, no need to create objects out of it.
  */
 public class Authentication {
-	static Initializer initializer = new Initializer();
 
 	public static Administrator adminLogin(String username, String password) {
 		ArrayList<Administrator> admins = Initializer.getAdmins();

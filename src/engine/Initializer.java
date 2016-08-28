@@ -340,11 +340,23 @@ public class Initializer {
 	public static ArrayList<String> getAvailableCategories() {
 		ArrayList<String> availableCategories = new ArrayList<String>();
 		ArrayList<Item> allItems = getItems();
+		availableCategories.add("All Categories");
 		for (Item item : allItems) {
 			if (!availableCategories.contains(item.getType())) {
 				availableCategories.add(item.getType());
 			}
 		}
 		return availableCategories;
+	}
+
+	public static ArrayList<Item> getItemsByCategory(String category) {
+		ArrayList<Item> categorizedItems = new ArrayList<Item>();
+		ArrayList<Item> allItems = getItems();
+		for (Item item : allItems) {
+			if (item.getType().equals(category)) {
+				categorizedItems.add(item);
+			}
+		}
+		return categorizedItems;
 	}
 }

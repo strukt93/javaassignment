@@ -8,9 +8,9 @@ public class BoughtItem {
 	private String buyerUsername;
 	private String sellerUsername;
 
-	public BoughtItem(String itemName, String buyerUserName, String sellerUsername) {
+	public BoughtItem(String itemName, String buyerUsername, String sellerUsername) {
 		this.itemName = itemName;
-		this.buyerUsername = buyerUserName;
+		this.buyerUsername = buyerUsername;
 		this.sellerUsername = sellerUsername;
 	}
 

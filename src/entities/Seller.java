@@ -26,7 +26,7 @@ public class Seller extends User {
 	 * Item, it returns false and stops if the Seller doesn't have enough
 	 * credit, and returns true after adding the Item otherwise.
 	 */
-	public boolean addItem(Item item) {
+	public void addItem(Item item) {
 
 		BufferedWriter writer = getBufferedWriter();
 		try {
@@ -35,7 +35,6 @@ public class Seller extends User {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return true;
 
 	}
 
