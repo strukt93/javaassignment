@@ -28,7 +28,7 @@ public class BuyerWindow extends MainWindow {
 
 	public BuyerWindow(Buyer buyer) {
 		this.buyer = buyer;
-		initialize(buyer.getUsername());
+		initialize(buyer.getUsername(), buyer.getRating());
 		initializeButtons("Edit Account Details", "Show Items On Sale", "Show Bought Items");
 		setEditAccountDetailsButtonListener(buyer.getName(), buyer.getEmailAddress(), buyer.getPassword(),
 				buyer.getContactNumber(), buyer.getAddress());
@@ -117,7 +117,8 @@ public class BuyerWindow extends MainWindow {
 			innerCell.add(new JLabel("Description: " + item.getDescription()));
 			innerCell.add(new JLabel("Category: " + item.getType()));
 			innerCell.add(new JLabel("Method: " + item.getMethod()));
-			innerCell.add(new JLabel("Seller Name: " + item.getSellerUsername()));
+			innerCell.add(new JLabel("Seller Name: " + item.getSellerUsername() + ", Rating: "
+					+ Initializer.getSellerByUsername(item.getSellerUsername()).getRating()));
 			JButton buyButton = generateBuyButton(item);
 			innerCell.add(buyButton);
 			panel1.add(innerCell);

@@ -27,7 +27,7 @@ public class SellerWindow extends MainWindow {
 
 	public SellerWindow(Seller seller) {
 		this.seller = seller;
-		initialize(seller.getUsername());
+		initialize(seller.getUsername(), seller.getRating());
 		initializeButtons("Edit Account Details", "Add New Item", "Show Sold Items", "Show Listed Items",
 				"Add Credit To Fee Account");
 		setEditAccountDetailsButtonListener(seller.getName(), seller.getEmailAddress(), seller.getPassword(),
@@ -54,11 +54,12 @@ public class SellerWindow extends MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!seller.hasSufficientCredit()) {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient credit in your fee account.",
-							"Add New Item", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
+				// if (!seller.hasSufficientCredit()) {
+				// JOptionPane.showMessageDialog(null, "You don't have
+				// sufficient credit in your fee account.",
+				// "Add New Item", JOptionPane.ERROR_MESSAGE);
+				// return;
+				// }
 				JTextField itemName = new JTextField(5);
 				JTextField category = new JTextField(5);
 				JTextField price = new JTextField(5);
@@ -83,10 +84,17 @@ public class SellerWindow extends MainWindow {
 							&& price.getText().length() != 0 && description.getText().length() != 0
 							&& method.getText().length() != 0) {
 						if (isParsable(price.getText())) {
+							if (!seller.hasSufficientCredit(Item.getSuccessFee(Double.parseDouble(price.getText())))) {
+								JOptionPane.showMessageDialog(null,
+										"You don't have sufficient credit in your fee account. Please add "
+												+ Item.getSuccessFee(Double.parseDouble(price.getText())) + " RM",
+										"Add New Item", JOptionPane.ERROR_MESSAGE);
+								return;
+							}
 							String first = "" + category.getText().charAt(0);
 							String itemCat = first.toUpperCase() + category.getText().substring(1);
 							seller.addItem(new Item(itemName.getText(), seller.getUsername(), description.getText(),
-									itemCat, method.getText(), Integer.parseInt(price.getText()), false));
+									itemCat, method.getText(), Double.parseDouble(price.getText()), false));
 							JOptionPane.showMessageDialog(null, "You have successfully added " + itemName.getText(),
 									"Successful Item Addition", JOptionPane.PLAIN_MESSAGE);
 						} else {
@@ -158,9 +166,10 @@ public class SellerWindow extends MainWindow {
 						JOptionPane.OK_CANCEL_OPTION);
 				if (result == JOptionPane.OK_OPTION) {
 					if (isParsable(creditAmount.getText())) {
-						seller.addFundsToFeeAccount(Integer.parseInt(creditAmount.getText()));
+						seller.addFundsToFeeAccount(Math.abs(Integer.parseInt(creditAmount.getText())));
 						JOptionPane.showMessageDialog(null,
-								"You have successfully added " + creditAmount.getText() + " RM to your fee account",
+								"You have successfully added " + Math.abs(Integer.parseInt(creditAmount.getText()))
+										+ " RM to your fee account",
 								"Successful Fund Addition", JOptionPane.PLAIN_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(null, "Please enter a numerical value for the amount.", "Error",

@@ -9,10 +9,10 @@ public class Item {
 	private String description;
 	private String type;
 	private String method;
-	private int cost;
+	private double cost;
 	private boolean sold;
 
-	public Item(String name, String sellerUsername, String description, String type, String method, int cost,
+	public Item(String name, String sellerUsername, String description, String type, String method, double cost,
 			boolean sold) {
 		this.name = name;
 		this.sellerUsername = sellerUsername;
@@ -35,7 +35,7 @@ public class Item {
 		return type;
 	}
 
-	public int getCost() {
+	public double getCost() {
 		return cost;
 	}
 
@@ -60,6 +60,19 @@ public class Item {
 		}
 		if (this.cost > 1000) {
 			return cost * 0.15;
+		}
+		return 0;
+	}
+
+	public static double getSuccessFee(double inputCost) {
+		if (inputCost >= 5 && inputCost <= 100) {
+			return inputCost * 0.05;
+		}
+		if (inputCost > 100 && inputCost <= 1000) {
+			return inputCost * 0.1;
+		}
+		if (inputCost > 1000) {
+			return inputCost * 0.15;
 		}
 		return 0;
 	}

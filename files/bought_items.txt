@@ -1,2 +1,0 @@
-Chair,John,Andrew
-Introduction to the Theory of Computation,John,Mustafa

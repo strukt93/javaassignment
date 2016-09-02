@@ -1,2 +1,0 @@
-Chair,5.0
-Introduction to the Theory of Computation,25.0

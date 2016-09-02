@@ -82,14 +82,18 @@ public abstract class MainWindow extends JFrame {
 
 	}
 
-	public void initialize(String name) {
+	public void initialize(String name, int rating) {
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		welcomeContainer = new JPanel();
 		logoutContainer = new JPanel();
 		innerContainer = new JPanel(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		logoutButton = new JButton("Logout");
-		welcomeMessage = new JLabel("Welcome, " + name);
+		if (rating != -1) {
+			welcomeMessage = new JLabel("<html>Welcome, " + name + "<br>Your rating is: " + rating + "</html>");
+		} else {
+			welcomeMessage = new JLabel("Welcome, " + name);
+		}
 	}
 
 	public void addComponentsAndView() {

@@ -98,8 +98,12 @@ public class Seller extends User {
 		account.updateFunds(-successFee);
 	}
 
-	public boolean hasSufficientCredit() {
-		return getFeeAccountBalance() > 10;
+	public boolean hasSufficientCredit(double successFee) {
+		double totalFees = successFee;
+		for (Item item : Initializer.getItemsBySellerUsername(this.getUsername())) {
+			totalFees += item.getSuccessFee();
+		}
+		return getFeeAccountBalance() >= totalFees;
 	}
 
 	/*

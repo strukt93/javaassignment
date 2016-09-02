@@ -28,7 +28,7 @@ public class AdminWindow extends MainWindow {
 
 	public AdminWindow(Administrator admin) {
 		this.admin = admin;
-		initialize(admin.getUsername());
+		initialize(admin.getUsername(), -1);
 		initializeButtons("Edit Account Details", "Show Items On Sale", "Show Bought Items", "Show Success Fees");
 		setEditAccountDetailsButtonListener(admin.getName(), admin.getEmailAddress(), admin.getPassword(),
 				admin.getContactNumber(), admin.getAddress());

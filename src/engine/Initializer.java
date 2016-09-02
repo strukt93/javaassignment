@@ -240,8 +240,8 @@ public class Initializer {
 			String line;
 			while ((line = itemsFile.readLine()) != null) {
 				String[] values = line.split(",");
-				Item item = new Item(values[0], values[1], values[2], values[3], values[4], Integer.parseInt(values[5]),
-						Boolean.parseBoolean(values[6]));
+				Item item = new Item(values[0], values[1], values[2], values[3], values[4],
+						Double.parseDouble(values[5]), Boolean.parseBoolean(values[6]));
 				items.add(item);
 			}
 			itemsFile.close();
@@ -358,5 +358,16 @@ public class Initializer {
 			}
 		}
 		return categorizedItems;
+	}
+
+	public static ArrayList<Item> getItemsBySellerUsername(String sellerUsername) {
+		ArrayList<Item> allItems = getItems();
+		ArrayList<Item> items = new ArrayList<Item>();
+		for (Item item : allItems) {
+			if (item.getSellerUsername().equals(sellerUsername)) {
+				items.add(item);
+			}
+		}
+		return items;
 	}
 }
