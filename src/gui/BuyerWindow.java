@@ -74,6 +74,11 @@ public class BuyerWindow extends MainWindow {
 				if (result == JOptionPane.OK_OPTION) {
 					if (jcb.getSelectedIndex() == 0) {
 						ArrayList<Item> allItems = Initializer.getItems();
+						if (allItems.size() == 0) {
+							JOptionPane.showMessageDialog(null, "There are no items on sale", "Sold Items",
+									JOptionPane.PLAIN_MESSAGE);
+							return;
+						}
 						generateItemsFrame(allItems, "All Items On Sale");
 					} else {
 						ArrayList<Item> items = Initializer.getItemsByCategory(jcb.getSelectedItem().toString());
@@ -95,6 +100,7 @@ public class BuyerWindow extends MainWindow {
 				if (boughtItems.size() == 0) {
 					JOptionPane.showMessageDialog(null, "You have no bought items", "Bought Items",
 							JOptionPane.PLAIN_MESSAGE);
+					return;
 				}
 				String message = "";
 				for (String s : boughtItems) {

@@ -1,0 +1,10 @@
+Car,Mustafa,New Car,Vehicles,Delivery,1000.0,false
+Discrete Math,Mustafa,My old book,Books,Pickup,400.0,false
+Galaxy S3,Mustafa,Old used phone,Mobiles,Delivery,600.0,false
+Pair of slippers,Linda,My old worn slippers,Footwear,Pickup,340.0,false
+Chocolate Cake,Linda,Tasty stuff,Foods,Delivery,130.0,false
+Prada Sunglasses,Linda,Expensive sunglasses,Sunglasses,Delivery,700.0,false
+Chair,Andrew,Old chair,Furniture,Pickup,70.0,false
+Table,Andrew,Old table,Furniture,Pickup,120.0,false
+HP Laptop,Andrew,Used laptop,Laptops,Pickup,400.0,false
+IPhone 6s Cover,Andrew,Iphone 6s cover,Accessories,Delivery,30.0,false

@@ -1,0 +1,13 @@
+Car,100.0
+Pair of slippers,34.0
+Table,12.0
+Discrete Math,40.0
+IPhone 6s Cover,1.5
+Chair,3.5
+Table,12.0
+Prada Sunglasses,70.0
+Galaxy S3,60.0
+Chocolate Cake,13.0
+Chair,3.5
+HP Laptop,40.0
+Table,12.0

@@ -1,0 +1,13 @@
+Car,John,Mustafa
+Pair of slippers,John,Linda
+Table,John,Andrew
+Discrete Math,Mustafa,Mustafa
+IPhone 6s Cover,Mustafa,Andrew
+Chair,Mustafa,Andrew
+Table,Mustafa,Andrew
+Prada Sunglasses,Mustafa,Linda
+Galaxy S3,Emily,Mustafa
+Chocolate Cake,Emily,Linda
+Chair,Emily,Andrew
+HP Laptop,Emily,Andrew
+Table,Emily,Andrew

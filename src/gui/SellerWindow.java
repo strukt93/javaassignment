@@ -122,6 +122,7 @@ public class SellerWindow extends MainWindow {
 				if (soldItems.size() == 0) {
 					JOptionPane.showMessageDialog(null, "You haven't sold any items", "Sold Items",
 							JOptionPane.PLAIN_MESSAGE);
+					return;
 				}
 				String message = "";
 				for (String s : soldItems) {
@@ -141,6 +142,7 @@ public class SellerWindow extends MainWindow {
 				if (listedItems.size() == 0) {
 					JOptionPane.showMessageDialog(null, "You haven't listed any items", "Listed Items",
 							JOptionPane.PLAIN_MESSAGE);
+					return;
 				}
 				String message = "";
 				for (String s : listedItems) {

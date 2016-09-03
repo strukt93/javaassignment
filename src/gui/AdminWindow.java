@@ -73,6 +73,11 @@ public class AdminWindow extends MainWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Item> allItems = admin.getItemsOnSale();
+				if (allItems.size() == 0) {
+					JOptionPane.showMessageDialog(null, "There are no items on sale", "Sold Items",
+							JOptionPane.PLAIN_MESSAGE);
+					return;
+				}
 				generateItemsFrame(allItems, "Items On Sale");
 			}
 		});
